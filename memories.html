@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Our Memory Album 💖</title>
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle, #fce4ec, #f8bbd0);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .album-wrapper {
+      width: 860px;
+      height: 540px;
+      background: #4e342e;
+      padding: 10px;
+      border-radius: 15px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 14px ridge #3e2723;
+    }
+
+    .book {
+      width: 800px;
+      height: 500px;
+      position: relative;
+      perspective: 2000px;
+    }
+
+    .page {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: left;
+      transition: transform 1s ease, z-index 1s;
+      background: #fafafa;
+      border-left: 6px solid #3e2723;
+      box-shadow: inset -3px 0 8px rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .page img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 10px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      border-radius: 4px;
+    }
+
+    .page .caption {
+      position: absolute;
+      bottom: 15px;
+      left: 20px;
+      color: #fff;
+      font-size: 1.3em;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    .page.turn {
+      transform: rotateY(-180deg);
+    }
+
+    .next-proposal {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .next-proposal a button {
+      padding: 10px 22px;
+      font-size: 1em;
+      border: none;
+      background-color: #ff4081;
+      color: white;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: background 0.3s;
+    }
+
+    .next-proposal a button:hover {
+      background-color: #c2185b;
+    }
+
+
+    .page.portrait img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+}
+.page.portrait {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <div class="album-wrapper">
+    <div class="book" id="book">
+      <div class="page" onclick="flipPage(this)" style="z-index: 13;">
+        <div class="page portrait"><img src="first.png" /></div>
+        <div class="caption">The First Photo 💑</div>
+      </div>
+      <div class="page" onclick="flipPage(this)" style="z-index: 12;">
+        <div class="page portrait"><img src="pup.jpeg" /></div>
+        <div class="caption">Our first photo with a pup 🐶</div>
+      </div>
+      <div class="page" onclick="flipPage(this)" style="z-index: 11;">
+        <div class="page portrait"><img src="sick.jpeg" /></div>
+        <div class="caption">When you got seriously sick😂</div>
+      </div>
+      <div class="page" onclick="flipPage(this)" style="z-index: 10;">
+        <div class="page portrait"><img src="smile.jpeg" /></div>
+        <div class="caption">That smile !! 💖</div>
+      </div>
+      <div class="page" onclick="flipPage(this)" style="z-index: 9;">
+        <img src="stare.jpeg" >
+        <div class="caption">My eyes , always on you 😁</div>
+      </div>
+      <div class="page" onclick="flipPage(this)" style="z-index: 8;">
+        <div class="page portrait"><img src="sugarcane.jpeg" /></div>
+        <div class="caption">That ganne ka thela😂</div>
+      </div>
+      <div class="page" onclick="flipPage(this)" style="z-index: 7;">
+        <img src="stunning.jpeg" >
+        <div class="caption">kitniiiiii pyaarriiii hai meri sonaa 💖</div>
+      </div>
+      <div class="page" onclick="flipPage(this)" style="z-index: 6;">
+        <div class="page portrait"><img src="look.jpeg" /></div>
+        <div class="caption">Miss Professional 😎</div>
+      </div>
+      <div class="page" onclick="flipPage(this)" style="z-index: 5;">
+        <img src="obey.jpeg" >
+        <div class="caption">see how kindly i obey you 😘</div>
+      </div>
+      <div class="page" onclick="flipPage(this)" style="z-index: 4;">
+        <img src="beat.jpeg" >
+        <div class="caption">Because i have to 😬</div>
+      </div>
+      <div class="page" onclick="flipPage(this)" style="z-index: 3;">
+        <div class="page portrait"><img src="hug.jpeg" /></div>
+        <div class="caption">The way you love me 🥺</div>
+      </div>
+      <div class="page" onclick="flipPage(this)" style="z-index: 2;">
+        <div class="page portrait"><img src="baby.jpeg" /></div>
+        <div class="caption">My Pretty Litlle Baby 🤗</div>
+      </div>
+      <div class="page" onclick="flipPage(this)" style="z-index: 1;">
+        <img src="propose.jpeg" >
+        <div class="caption">The day I gave you the First Rose 🌹</div>
+      </div>
+      </div>
+
+      
+    </div>
+
+    <div class="next-proposal">
+      <a href="confession.html"><button>Next 💍</button></a>
+    </div>
+  </div>
+
+  <script>
+    const pages = document.querySelectorAll(".page");
+    let zCounter = pages.length;
+
+    pages.forEach((page, index) => {
+      page.dataset.index = index;
+    });
+
+    function flipPage(page) {
+      if (!page.classList.contains('turn')) {
+        page.classList.add("turn");
+        page.style.zIndex = ++zCounter;
+      } else {
+        page.classList.remove("turn");
+        // Reset z-index based on original order to send it back
+        let originalIndex = parseInt(page.dataset.index);
+        page.style.zIndex = originalIndex + 1;
+      }
+    }
+  </script>
+
+</body>
+</html>

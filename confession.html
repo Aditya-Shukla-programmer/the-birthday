@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Heart Speaks 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at center, #ffe4ec, #ffc2d1);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+      color: #b30059;
+      overflow: hidden;
+    }
+
+    .message {
+      max-width: 600px;
+      font-size: 1.5rem;
+      opacity: 0;
+      animation: fadeInText 3s ease forwards;
+      line-height: 1.7;
+      padding: 0 20px;
+    }
+
+    @keyframes fadeInText {
+      to {
+        opacity: 1;
+      }
+    }
+
+    #nextBtn {
+      margin-top: 40px;
+      padding: 14px 30px;
+      font-size: 18px;
+      background: linear-gradient(45deg, #ff5e99, #ffb6c1);
+      border: none;
+      border-radius: 30px;
+      color: white;
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeInBtn 3s ease forwards;
+      animation-delay: 3s;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    #nextBtn:hover {
+      transform: scale(1.08);
+      background: linear-gradient(45deg, #ff4e88, #ffa0b9);
+    }
+
+    @keyframes fadeInBtn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="message">
+    I've shared laughs, dreams, secrets, and memories with you...<br><br>
+    But there's still something deeper — something that sits at the core of my heart.<br>
+    It's not just affection, it's not just attraction… it's something far more beautiful.<br><br>
+    Are you ready to hear what my heart’s been whispering all along? 💞
+  </div>
+
+  <button id="nextBtn" onclick="goToProposal()">I'm ready...</button>
+
+  <!-- Sweet peaceful music -->
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/07/29/audio_e18aa37bfa.mp3?filename=romantic-piano-ambient-116199.mp3" type="audio/mp3">
+  </audio>
+
+  <script>
+    function goToProposal() {
+      window.location.href = "proposal.html";
+    }
+  </script>
+</body>
+</html>

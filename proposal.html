@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Proposal 💍</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ffe6f0, #ffd6e8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      animation: fadeIn 3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .container {
+      background: white;
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+      text-align: center;
+      max-width: 600px;
+      width: 90%;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: deeppink;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #555;
+      margin-bottom: 40px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .yes-btn {
+      background: hotpink;
+      color: white;
+    }
+
+    .yes-btn:hover {
+      background: deeppink;
+      transform: scale(1.05);
+    }
+
+    .no-btn {
+      background: #ffc0cb;
+      color: white;
+    }
+
+    .no-btn:hover {
+      background: crimson;
+      transform: scale(1.05);
+    }
+
+    .final-msg {
+      font-size: 1.5em;
+      color: deeppink;
+      display: none;
+      margin-top: 30px;
+      animation: fadeIn 2s ease;
+    }
+
+    .next-btn {
+      margin-top: 30px;
+      padding: 12px 30px;
+      background: deeppink;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .next-btn:hover {
+      background: hotpink;
+      transform: scale(1.05);
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>A Sweet Question Just for You 💞</h1>
+    <p>Will you marry me and be my forever love? 💍</p>
+
+    <div class="btn-container">
+      <button class="btn yes-btn" onclick="sayYes()">Yes</button>
+      <button class="btn no-btn" onclick="sayNo(this)">No</button>
+    </div>
+
+    <div class="final-msg" id="finalMsg">Yay! I knew you'd say yes! 💖💖</div>
+    <button class="next-btn" id="nextBtn" onclick="goNext()">Next →</button>
+  </div>
+
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_f574d72fd3.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    function sayYes() {
+  document.getElementById("finalMsg").style.display = "block";
+  document.getElementById("nextBtn").style.display = "inline-block";
+}
+
+function sayNo(btn) {
+  btn.innerText = "💥💥 Boom! No? Not allowed!";
+  btn.disabled = true;
+  btn.style.backgroundColor = "gray";
+
+  // Show the text for 3 seconds instead of 1 second
+  setTimeout(() => {
+    btn.style.display = "none";
+  }, 3000); // 3000 milliseconds = 3 seconds
+}
+
+function goNext() {
+  window.location.href = "contact.html";
+}
+
+  </script>
+</body>
+</html>

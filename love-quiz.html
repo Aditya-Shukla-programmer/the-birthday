@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Love Quiz 💘</title>
+  <style>
+    body {
+      font-family: 'Arial Rounded MT Bold', sans-serif;
+      background: linear-gradient(to bottom, #fff0f5, #ffe4ec);
+      margin: 0;
+      padding: 40px;
+      color: #5a2a52;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .quiz-container {
+      max-width: 700px;
+      margin: auto;
+      background: #ffffffd9;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    .question {
+      margin-bottom: 25px;
+    }
+    .question p {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    .question input[type="radio"] {
+      margin-right: 10px;
+    }
+    #result {
+      display: none;
+      margin-top: 30px;
+      font-size: 1.4em;
+      text-align: center;
+      color: #e94e77;
+      font-weight: bold;
+    }
+    .submit-btn, .next-btn {
+      display: block;
+      margin: 30px auto 0;
+      padding: 12px 25px;
+      font-size: 1em;
+      border: none;
+      border-radius: 25px;
+      background: #e94e77;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .submit-btn:hover, .next-btn:hover {
+      background: #d03c66;
+    }
+    .next-btn {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💕 How Well Do You Know Us?</h1>
+
+  <div class="quiz-container">
+    <form id="quizForm">
+      <div class="question">
+        <p>1. What would i choose to eat?</p>
+        <label><input type="radio" name="q1">Manchurian</label><br>
+        <label><input type="radio" name="q1">Pasta</label><br>
+        <label><input type="radio" name="q1" value="correct">You</label>
+      </div>
+
+      <div class="question">
+        <p>2. What’s my favorite thing about you?</p>
+        <label><input type="radio" name="q2">Your style</label><br>
+        <label><input type="radio" name="q2" value="correct">Your personality</label><br>
+        <label><input type="radio" name="q2">Your voice</label>
+      </div>
+
+      <div class="question">
+        <p>3. What was the first thing that made me fall for you?</p>
+        <label><input type="radio" name="q3" value="correct">Your Eyes</label><br>
+        <label><input type="radio" name="q3">Your Voice</label><br>
+        <label><input type="radio" name="q3">Your personality</label>
+      </div>
+
+      <div class="question">
+        <p>4. who among the following i love the most</p>
+        <label><input type="radio" name="q4">My friends</label><br>
+        <label><input type="radio" name="q4" value="correct">My Sona</label><br>
+        <label><input type="radio" name="q4">Cristiano</label>
+      </div>
+
+      <div class="question">
+        <p>5. What i want right now?</p>
+        <label><input type="radio" name="q5" value="correct">The best kiss from you</label><br>
+        <label><input type="radio" name="q5" value="correct">The best kiss from you</label><br>
+        <label><input type="radio" name="q5" value="correct">The best kiss from you</label>
+      </div>
+
+      <button type="button" class="submit-btn" onclick="submitQuiz()">Submit Answers</button>
+    </form>
+
+    <div id="result"></div>
+    <button class="next-btn" onclick="location.href='love-elevator.html'">Next ➤</button>
+  </div>
+
+  <script>
+    function submitQuiz() {
+      const correctAnswers = document.querySelectorAll('input[value="correct"]:checked');
+      const resultText = document.getElementById("result");
+      const nextBtn = document.querySelector(".next-btn");
+
+      if (correctAnswers.length >= 4) {
+        resultText.textContent = "Aww! You know us so well 💖";
+      } else {
+        resultText.textContent = "Cute! But we need more cuddles & quizzes 💌";
+      }
+
+      resultText.style.display = "block";
+      nextBtn.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>

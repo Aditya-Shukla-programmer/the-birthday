@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Birthday Cake 🎂</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #130f40, #6c5ce7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      touch-action: manipulation;
+    }
+
+    .cake-container {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      cursor: pointer;
+    }
+
+    .cake {
+      width: 280px;
+      height: 180px;
+      background: linear-gradient(to bottom, #ff8fa3, #ff6b81);
+      border-radius: 0 0 40px 40px;
+      position: relative;
+      box-shadow: inset 0 10px #fff2f2, 0 10px 30px rgba(255, 105, 135, 0.5);
+      overflow: hidden;
+      transition: height 0.3s ease;
+    }
+
+    .icing {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 50px;
+      background: #fff0f5;
+      border-radius: 40px 40px 20px 20px;
+      box-shadow: inset 0 -5px #ffc0cb;
+    }
+
+    .candles {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      z-index: 2;
+    }
+
+    .candle {
+      width: 12px;
+      height: 45px;
+      background: repeating-linear-gradient(
+        45deg,
+        #ffeaa7,
+        #ffeaa7 4px,
+        #fab1a0 4px,
+        #fab1a0 8px
+      );
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .flame {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 20px;
+      background: radial-gradient(circle, orange 20%, yellow 70%, transparent 90%);
+      border-radius: 50%;
+      animation: flicker 0.3s infinite alternate;
+    }
+
+    @keyframes flicker {
+      from { transform: translateX(-50%) scale(1); opacity: 1; }
+      to { transform: translateX(-50%) scale(1.2); opacity: 0.85; }
+    }
+
+    .smoke {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 20px;
+      background: radial-gradient(circle, #bbb, #ccc, transparent);
+      border-radius: 50%;
+      animation: rise 1s forwards;
+    }
+
+    @keyframes rise {
+      0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
+    }
+
+    .slice {
+      position: absolute;
+      bottom: 0;
+      width: 60px;
+      height: 180px;
+      background: linear-gradient(to bottom, #ffc1cc, #ff8fa3);
+      border-radius: 10px;
+      box-shadow: inset 0 10px #fff2f2;
+      transform: translateY(100%);
+      opacity: 0;
+      animation: popUp 0.5s ease forwards;
+    }
+
+    @keyframes popUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .next-btn {
+      margin-top: 30px;
+      padding: 12px 26px;
+      background: #fd79a8;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .next-btn:hover {
+      background: #ff92c2;
+    }
+  </style>
+</head>
+<body>
+  <div class="cake-container" id="cakeContainer">
+    <div class="candles" id="candles">
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+    </div>
+    <div class="cake" id="cake">
+      <div class="icing"></div>
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="location.href='fun-facts.html'">Next ➜</button>
+
+  <audio id="blowAudio" src="https://www.soundjay.com/button/sounds/button-30.mp3" preload="auto"></audio>
+  <audio id="cutAudio" src="https://www.soundjay.com/human/sounds/chewing-1.mp3" preload="auto"></audio>
+
+  <script>
+    const candles = document.getElementById("candles");
+    const blowAudio = document.getElementById("blowAudio");
+    const cutAudio = document.getElementById("cutAudio");
+    const cakeContainer = document.getElementById("cakeContainer");
+    const cake = document.getElementById("cake");
+
+    let sliceCount = 0;
+    const maxSlices = 6;
+    const cakeHeight = 180;
+    let candlesBlown = false;
+
+    function blowCandles() {
+      if (candlesBlown) return;
+      candlesBlown = true;
+      blowAudio.play();
+      document.querySelectorAll('.flame').forEach(flame => {
+        const smoke = document.createElement("div");
+        smoke.className = "smoke";
+        flame.parentElement.appendChild(smoke);
+        flame.remove();
+      });
+    }
+
+    function cutCake() {
+      if (sliceCount >= maxSlices) return;
+      cutAudio.play();
+
+      const slice = document.createElement("div");
+      slice.className = "slice";
+      slice.style.left = `${-80 + sliceCount * 45}px`;
+      cakeContainer.appendChild(slice);
+
+      // Reduce cake height
+      let newHeight = cakeHeight - (sliceCount + 1) * 20;
+      cake.style.height = `${Math.max(60, newHeight)}px`;
+
+      sliceCount++;
+    }
+
+    // Desktop keys
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === "Tab") {
+        blowCandles();
+      }
+    });
+
+    // Touch and click events
+    let firstTouch = true;
+    cakeContainer.addEventListener("click", () => {
+      if (firstTouch && !candlesBlown) {
+        blowCandles();
+        firstTouch = false;
+      } else {
+        cutCake();
+      }
+    });
+
+    // Mobile double tap support
+    cakeContainer.addEventListener("touchstart", (e) => {
+      if (firstTouch && !candlesBlown) {
+        blowCandles();
+        firstTouch = false;
+      } else {
+        cutCake();
+      }
+    });
+  </script>
+</body>
+</html>
